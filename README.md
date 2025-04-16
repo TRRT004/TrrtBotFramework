@@ -1,18 +1,21 @@
 # TftTournamentBot
 
-TftTournamentBot is a Discord bot written in C++ that helps manage tournament registrations on a Discord server.
+TftTournamentBot is a Discord bot written in C++ that helps manage tournament registrations on a Discord server. It also integrates with Google Sheets and Excel to export and manage tournament data efficiently.
 
 ## Features
 
 - Allows users to register for tournaments via Discord commands.
 - Provides administrators with tools to manage registrations.
 - Sends notifications and updates about the tournament.
+- Exports tournament data to Google Sheets and Excel for easy management.
 
 ## Requirements
 
 - C++17 or later
 - [Discord API library for C++](https://github.com/discord/discord-api-docs) (e.g., [DPP](https://github.com/brainboxdotcc/DPP) or [Sleepy Discord](https://github.com/yourWaifu/sleepy-discord))
 - A Discord bot token (create one [here](https://discord.com/developers/applications))
+- [Google Sheets API](https://developers.google.com/sheets/api) credentials for integration
+- [Excel library for C++](https://github.com/tfussell/xlnt) or equivalent for Excel file handling
 
 ## Installation
 
@@ -21,7 +24,10 @@ TftTournamentBot is a Discord bot written in C++ that helps manage tournament re
    git clone https://github.com/yourusername/TftTournamentBot.git
    cd TftTournamentBot
    ```
-2. Install dependencies: Follow the instructions for your chosen Discord API library.
+2. Install dependencies:
+	- Follow the instructions for your chosen Discord API library.
+	- Set up the Google Sheets API by creating a credentials.json file in the config/ directory. Refer to the Google Sheets API documentation for setup instructions
+	- Install the Excel library (not yet decided)
 3. Build the project:
 	```bash
 	mkdir build
@@ -29,7 +35,7 @@ TftTournamentBot is a Discord bot written in C++ that helps manage tournament re
 	cmake ..
 	make
 	```
-4. Configure the bot: Create a `config.json` file in the root directory with your bot token:
+4. Configure the bot: Create a `token.json` file in the `config` directory with your bot token:
 	```json
 	{
     	"token": "YOUR_DISCORD_BOT_TOKEN"
@@ -40,12 +46,7 @@ TftTournamentBot is a Discord bot written in C++ that helps manage tournament re
 	```bash
 	./TftTournamentBot
 	```
-2. Use the following commands in your Discord server:
-
-   - `!register`: Register yourself for the tournament.
-   - `!unregister`: Remove yourself from the tournament registration.
-   - `!list`: Display the list of all registered participants.
-   - `!status`: Check the current status of the tournament.
+2. Use the following slash commands in your Discord server:
 
 ## Contributing
 
