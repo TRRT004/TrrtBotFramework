@@ -7,8 +7,11 @@ project(TftTournamentBot VERSION 1.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# Find all .cpp files under the src directory (recursively)
+file(GLOB_RECURSE SRC_SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
+
 # Add the executable
-add_executable(TftTournamentBot src/main.cpp src/classes/ConfigManager.cpp)
+add_executable(TftTournamentBot ${SRC_SOURCES})
 
 # Include directories for dependencies
 include_directories(${CMAKE_SOURCE_DIR}/include)
