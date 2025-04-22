@@ -7,10 +7,9 @@ int main() {
     try {
         // Load the configuration
         ConfigManager config("token.json");
-        std::string botToken = config.get<std::string>("token");
 
-        // Initialize the bot
-        dpp::cluster bot(botToken);
+		// Initialize the bot
+		dpp::cluster bot(config.get<std::string>("token"));
 
         bot.on_log(dpp::utility::cout_logger());
 
