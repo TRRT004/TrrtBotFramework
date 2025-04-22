@@ -1,5 +1,4 @@
 # Ignore the bot configuration file containing sensitive information
 config/token.json
-tmp/*
 build/*
 .vscode/*
