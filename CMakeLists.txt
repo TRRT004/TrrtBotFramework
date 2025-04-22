@@ -24,6 +24,10 @@ target_link_libraries(TftTournamentBot dpp::dpp)
 find_package(nlohmann_json REQUIRED)
 target_link_libraries(TftTournamentBot nlohmann_json::nlohmann_json)
 
+# Find and link the C++ SQLite3 library
+find_package(SQLite3 REQUIRED)
+target_link_libraries(TftTournamentBot SQLite::SQLite3)
+
 # Set the output directory for the binary
 set_target_properties(TftTournamentBot PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}

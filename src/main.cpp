@@ -1,8 +1,8 @@
 #include <iostream>
 #include <dpp/dpp.h>
+#include <sqlite3.h>
 #include "ConfigManager.h"
 #include "commands/CommandLoader.h"
-#include <SQLiteCpp/SQLiteCpp.h>
 
 int main() {
     try {
