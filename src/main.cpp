@@ -1,13 +1,16 @@
 #include <iostream>
 #include <dpp/dpp.h>
-#include <sqlite3.h>
 #include "ConfigManager.h"
 #include "commands/CommandLoader.h"
+#include "TournamentDatabase.h"
 
 int main() {
     try {
         // Load the configuration
         ConfigManager config("token.json");
+
+		// Initialize the database
+		TournamentDatabase db("tournaments.db");
 
 		// Initialize the bot
 		dpp::cluster bot(config.get<std::string>("token"));
