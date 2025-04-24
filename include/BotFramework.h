@@ -7,54 +7,15 @@
 
 class BotFramework {
 public:
-    BotFramework(const std::string& token) : bot(token) {
-        bot.on_log(dpp::utility::cout_logger());
+    BotFramework(const std::string& token);
 
-        // Register commands when the bot is ready
-        bot.on_ready([this](const dpp::ready_t& event) {
-            if (dpp::run_once<struct register_bot_commands>()) {
-                registerCommands();
-            }
-        });
-
-        // Handle slash commands
-        bot.on_slashcommand([this](const dpp::slashcommand_t& event) {
-            handleCommand(event);
-        });
-    }
-
-    void start() {
-        bot.start(dpp::st_wait);
-    }
+    void start();
 
 private:
     dpp::cluster bot;
 
-    void registerCommands() {
-        std::vector<dpp::slashcommand> commands;
-        for (const auto& command : CommandRegistry::getCommands()) {
-            commands.push_back(command->getCommand(bot.me.id).first);
-			std::cout << "[INFO] Registering command: " << command->getCommand(bot.me.id).first.name << std::endl;
-        }
-
-        bot.global_bulk_command_create(commands, [](const dpp::confirmation_callback_t& callback) {
-            if (callback.is_error()) {
-                std::cerr << "[ERROR] Failed to register commands: " << callback.get_error().message << std::endl;
-            } else {
-                std::cout << "[INFO] All commands registered successfully." << std::endl;
-            }
-        });
-    }
-
-    void handleCommand(const dpp::slashcommand_t& event) {
-        for (const auto& command : CommandRegistry::getCommands()) {
-            if (event.command.get_command_name() == command->getCommand(event.command.id).first.name) {
-                command->getCommand(event.command.id).second(event);
-                return;
-            }
-        }
-        std::cerr << "[ERROR] Command not found: " << event.command.get_command_name() << std::endl;
-    }
+    void registerCommands();
+    void handleCommand(const dpp::slashcommand_t& event);
 };
 
 #endif // BOT_FRAMEWORK_H
