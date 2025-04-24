@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 #include <dpp/dpp.h>
-#include "CommandRegistry.h"
+#include "commands/CommandRegistry.h"
 
 class CommandLoader {
 public:

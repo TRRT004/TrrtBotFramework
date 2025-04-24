@@ -19,11 +19,9 @@ public:
     }
 
 private:
-    // Static initializer to register the command
     static const bool registered;
 };
 
-// Register the command with the registry
 const bool PingCommand::registered = []() {
     CommandRegistry::registerCommand(std::make_unique<PingCommand>());
     return true;
