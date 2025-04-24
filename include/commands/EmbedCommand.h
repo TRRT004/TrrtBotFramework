@@ -1,10 +1,11 @@
 #ifndef EMBED_COMMAND_H
 #define EMBED_COMMAND_H
 
-#include "Command.h"
+#include <dpp/dpp.h>
 
-class EmbedCommand : public Command {
-	void registerCommand(dpp::cluster& bot) override;
+class EmbedCommand {
+public:
+    static std::pair<dpp::slashcommand, std::function<void(const dpp::slashcommand_t&)>> getCommand(dpp::snowflake application_id);
 };
 
 #endif // EMBED_COMMAND_H
