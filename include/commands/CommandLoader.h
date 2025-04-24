@@ -2,24 +2,20 @@
 #define COMMAND_LOADER_H
 
 #include <vector>
-#include <iostream>
+#include <memory>
 #include <dpp/dpp.h>
-#include "PingCommand.h"
-#include "EmbedCommand.h"
+#include "CommandRegistry.h"
 
 class CommandLoader {
 public:
     CommandLoader(dpp::cluster& bot) : bot(bot) {
-        // Load commands and handlers into separate vectors
-        auto pingCommand = PingCommand::getCommand(bot.me.id);
-        commands.first.push_back(pingCommand.first);
-        commands.second.push_back(pingCommand.second);
-        log("Loaded command: " + pingCommand.first.name);
-
-        auto embedCommand = EmbedCommand::getCommand(bot.me.id);
-        commands.first.push_back(embedCommand.first);
-        commands.second.push_back(embedCommand.second);
-        log("Loaded command: " + embedCommand.first.name);
+        // Load commands and handlers from the registry
+        for (const auto& command : CommandRegistry::getCommands()) {
+            auto cmd = command->getCommand(bot.me.id);
+            commands.first.push_back(cmd.first);
+            commands.second.push_back(cmd.second);
+            log("Loaded command: " + cmd.first.name);
+        }
 
         log("Total commands loaded: " + std::to_string(commands.first.size()));
     }
@@ -38,7 +34,7 @@ public:
     void handleCommand(const dpp::slashcommand_t& event) {
         // Find the command by name and execute its handler
         for (size_t i = 0; i < commands.first.size(); ++i) {
-            if (event.command == commands.first[i]) {
+            if (event.command.get_command_name() == commands.first[i].name) {
                 log("Handling command: " + event.command.get_command_name());
                 commands.second[i](event);
                 return;

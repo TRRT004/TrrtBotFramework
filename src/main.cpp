@@ -1,5 +1,6 @@
 #include <iostream>
 #include <dpp/dpp.h>
+#include <sqlite3.h>
 #include "ConfigManager.h"
 #include "commands/CommandLoader.h"
 
