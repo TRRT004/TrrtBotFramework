@@ -19,12 +19,10 @@ public:
     }
 
 private:
-    static const bool registered;
+    inline static const bool registered = []() {
+        CommandRegistry::registerCommand(std::make_unique<PingCommand>());
+        return true;
+    }();
 };
-
-const bool PingCommand::registered = []() {
-    CommandRegistry::registerCommand(std::make_unique<PingCommand>());
-    return true;
-}();
 
 #endif // PING_COMMAND_H

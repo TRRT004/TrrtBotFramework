@@ -24,14 +24,10 @@ public:
     }
 
 private:
-    // Static initializer to register the command
-    static const bool registered;
+    inline static const bool registered = []() {
+        CommandRegistry::registerCommand(std::make_unique<EmbedCommand>());
+        return true;
+    }();
 };
-
-// Register the command with the registry
-const bool EmbedCommand::registered = []() {
-    CommandRegistry::registerCommand(std::make_unique<EmbedCommand>());
-    return true;
-}();
 
 #endif // EMBED_COMMAND_H
