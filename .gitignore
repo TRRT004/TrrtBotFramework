@@ -2,3 +2,4 @@
 config/token.json
 build/*
 .vscode/*
+include/commands.h
