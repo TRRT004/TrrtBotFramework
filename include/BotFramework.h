@@ -2,7 +2,8 @@
 #define BOT_FRAMEWORK_H
 
 #include <dpp/dpp.h>
-#include "commands/CommandRegistry.h"
+#include "CommandRegistry.h"
+#include "commands.h"
 
 class BotFramework {
 public:
@@ -33,6 +34,7 @@ private:
         std::vector<dpp::slashcommand> commands;
         for (const auto& command : CommandRegistry::getCommands()) {
             commands.push_back(command->getCommand(bot.me.id).first);
+			std::cout << "[INFO] Registering command: " << command->getCommand(bot.me.id).first.name << std::endl;
         }
 
         bot.global_bulk_command_create(commands, [](const dpp::confirmation_callback_t& callback) {

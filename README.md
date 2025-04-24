@@ -38,10 +38,8 @@ TrrtBotFramework is a C++ framework for building Discord bots using the DPP libr
 
 3. Build the project:
    ```bash
-   mkdir build
-   cd build
-   cmake ..
-   make
+   cmake -S . -B build
+   cmake --build build
    ```
 
 4. Configure the bot:
@@ -54,7 +52,7 @@ TrrtBotFramework is a C++ framework for building Discord bots using the DPP libr
 
 5. Run the bot:
    ```bash
-   ./Bot
+   ./build/Bot
    ```
 
 ### macOS
@@ -77,10 +75,8 @@ TrrtBotFramework is a C++ framework for building Discord bots using the DPP libr
 
 3. Build the project:
    ```bash
-   mkdir build
-   cd build
-   cmake ..
-   make
+   cmake -S . -B build
+   cmake --build build
    ```
 
 4. Configure the bot:
@@ -93,7 +89,7 @@ TrrtBotFramework is a C++ framework for building Discord bots using the DPP libr
 
 5. Run the bot:
    ```bash
-   ./Bot
+   ./build/Bot
    ```
 
 ### Windows
@@ -126,10 +122,8 @@ TrrtBotFramework is a C++ framework for building Discord bots using the DPP libr
 3. Build the project:
    - Open a terminal in the project directory and run:
      ```powershell
-     mkdir build
-     cd build
-     cmake .. -G "MinGW Makefiles"
-     mingw32-make
+     cmake -S . -B build
+   	 cmake --build build
      ```
 
 4. Configure the bot:
@@ -142,7 +136,7 @@ TrrtBotFramework is a C++ framework for building Discord bots using the DPP libr
 
 5. Run the bot:
    ```powershell
-   .\Bot.exe
+    .\build\Bot.exe
    ```
 
 ## Usage

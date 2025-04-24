@@ -4,7 +4,7 @@
 
 int main() {
     try {
-        ConfigManager config("config/token.json");
+        ConfigManager config("token.json");
         std::string botToken = config.get<std::string>("token");
 
         BotFramework bot(botToken);

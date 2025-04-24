@@ -3,7 +3,8 @@
 
 #include <vector>
 #include <memory>
-#include "BaseCommand.h"
+#include <iostream>
+#include "commands/BaseCommand.h"
 
 class CommandRegistry {
 public:
