@@ -1,7 +1,7 @@
 #include "commands/EmbedCommand.h"
 
-std::pair<dpp::slashcommand, std::function<void(const dpp::slashcommand_t&)>> EmbedCommand::getCommand(dpp::snowflake application_id) {
-	dpp::slashcommand command("embed", "Answers the user with an embed", application_id);
+std::pair<dpp::slashcommand, std::function<void(const dpp::slashcommand_t&)>> EmbedCommand::getCommand(dpp::snowflake bot_id) {
+	dpp::slashcommand command("embed", "Answers the user with an embed", bot_id);
 
 	auto handler = [](const dpp::slashcommand_t& event) {
 		dpp::embed embed;

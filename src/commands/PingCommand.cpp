@@ -1,8 +1,8 @@
 #include "commands/PingCommand.h"
 
-std::pair<dpp::slashcommand, std::function<void(const dpp::slashcommand_t&)>> PingCommand::getCommand(dpp::snowflake application_id) {
+std::pair<dpp::slashcommand, std::function<void(const dpp::slashcommand_t&)>> PingCommand::getCommand(dpp::snowflake bot_id) {
     // Define the slash command
-    dpp::slashcommand command("ping", "Replies with Pong!", application_id);
+    dpp::slashcommand command("ping", "Replies with Pong!", bot_id);
 
     // Define the handler function
     auto handler = [](const dpp::slashcommand_t& event) {

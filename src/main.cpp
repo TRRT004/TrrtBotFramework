@@ -14,20 +14,18 @@ int main() {
 
         bot.on_log(dpp::utility::cout_logger());
 
-		bot.global_bulk_command_delete([&bot](const dpp::confirmation_callback_t& callback) {
-			if (callback.is_error()) {
-				std::cerr << "Failed to delete commands: " << callback.get_error().message << std::endl;
-			} else {
-				std::cout << "All commands deleted successfully." << std::endl;
-			}
-		});
-
-        // Register commands
-		CommandLoader commandLoader(bot);
-		commandLoader.registerCommands();
+        // Register commands when the bot is ready
+        bot.on_ready([&bot](const dpp::ready_t& event) {
+            if (dpp::run_once<struct register_bot_commands>()) {
+                CommandLoader commandLoader(bot);
+                // Register all commands
+				commandLoader.registerCommands();
+            }
+        });
 
         // Handle slash commands
-        bot.on_slashcommand([&commandLoader](const dpp::slashcommand_t& event) {
+        bot.on_slashcommand([&bot](const dpp::slashcommand_t& event) {
+            CommandLoader commandLoader(bot);
             commandLoader.handleCommand(event);
         });
 
